@@ -2,8 +2,10 @@
 import CalendarCard from '@/components/CalendarCard.vue'
 import CoachCard from '@/components/CoachCard.vue'
 import EventCard from '@/components/EventCard.vue'
+import InfoCard from '@/components/InfoCard.vue'
 import LinkButton from '@/components/LinkButton.vue'
 import SectionHeading from '@/components/SectionHeading.vue'
+import UpcomingList from '@/components/UpcomingList.vue'
 import { site } from '@/data/site'
 </script>
 
@@ -40,12 +42,25 @@ import { site } from '@/data/site'
     <main class="pb-10">
       <div class="mx-auto flex max-w-md flex-col gap-8 px-4 pt-4">
         <section>
+          <SectionHeading title="Coach" />
+          <CoachCard v-bind="site.coach" />
+        </section>
+
+        <section id="calendar" class="scroll-mt-6">
+          <SectionHeading title="Team Calendar" />
           <CalendarCard :ics-url="site.calendar.icsUrl" :name="site.calendar.name" />
         </section>
 
         <section>
           <SectionHeading title="Upcoming" />
-          <EventCard :event="site.pictures" />
+          <UpcomingList :items="site.upcoming" />
+        </section>
+
+        <section v-if="site.planFor.length">
+          <SectionHeading title="Plan For" />
+          <div class="flex flex-col gap-4">
+            <EventCard v-for="event in site.planFor" :key="event.title" :event="event" />
+          </div>
         </section>
 
         <section v-if="site.links.length">
@@ -55,9 +70,11 @@ import { site } from '@/data/site'
           </div>
         </section>
 
-        <section>
-          <SectionHeading title="Coach" />
-          <CoachCard v-bind="site.coach" />
+        <section v-if="site.otherInfo.length">
+          <SectionHeading title="Other Info" />
+          <div class="flex flex-col gap-4">
+            <InfoCard v-for="item in site.otherInfo" :key="item.title" :item="item" />
+          </div>
         </section>
       </div>
 

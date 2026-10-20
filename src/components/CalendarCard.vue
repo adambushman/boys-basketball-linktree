@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { CalendarPlus, Check, Copy } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card'
 import { calendarLinks } from '@/lib/calendar'
 
 const props = defineProps<{ icsUrl: string; name: string }>()
@@ -21,7 +21,7 @@ async function copyLink() {
 }
 
 const options = [
-  { label: 'iPhone / Apple', href: links.apple },
+  { label: 'Apple', href: links.apple },
   { label: 'Google', href: links.google },
   { label: 'Outlook', href: links.outlook },
 ]
@@ -30,26 +30,25 @@ const options = [
 <template>
   <Card class="gap-4 border-jazz-sky/40 bg-jazz-black py-5">
     <CardHeader class="px-5">
-      <CardTitle class="flex items-center gap-2 font-display text-xl uppercase tracking-wide">
-        <CalendarPlus class="size-5 text-jazz-sky" />
-        Team Calendar
-      </CardTitle>
-      <CardDescription class="text-white/70">
+      <CardDescription class="flex items-start gap-2 text-white/70">
+        <CalendarPlus class="mt-0.5 size-5 shrink-0 text-jazz-sky" />
         Subscribe once. Games and practices update on your phone automatically.
       </CardDescription>
     </CardHeader>
     <CardContent class="grid gap-2 px-5">
-      <Button
-        v-for="opt in options"
-        :key="opt.label"
-        as="a"
-        :href="opt.href"
-        target="_blank"
-        rel="noopener"
-        class="h-12 justify-center bg-jazz-sky text-base font-semibold text-jazz-black hover:bg-jazz-sky/85"
-      >
-        Add to {{ opt.label }}
-      </Button>
+      <div class="flex gap-2">
+        <Button
+          v-for="opt in options"
+          :key="opt.label"
+          as="a"
+          :href="opt.href"
+          target="_blank"
+          rel="noopener"
+          class="h-12 flex-1 bg-jazz-sky text-base font-semibold text-jazz-black hover:bg-jazz-sky/85"
+        >
+          {{ opt.label }}
+        </Button>
+      </div>
       <Button
         variant="ghost"
         class="h-11 text-white/80 hover:bg-white/10 hover:text-white"
