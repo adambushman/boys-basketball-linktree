@@ -11,7 +11,7 @@ import { site } from '@/data/site'
 
 <template>
   <div class="min-h-dvh bg-jazz-purple">
-    <header class="relative overflow-hidden pt-12 pb-16 text-center">
+    <header class="relative overflow-hidden pt-[calc(3rem+env(safe-area-inset-top))] pb-16 text-center">
       <!-- Subtle court circle behind the title -->
       <div
         class="pointer-events-none absolute left-1/2 top-4 size-72 -translate-x-1/2 rounded-full border-2 border-white/10"

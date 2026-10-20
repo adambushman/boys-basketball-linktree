@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { CalendarPlus, Check, Copy } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card'
+import CalendarAppIcon from '@/components/icons/CalendarAppIcon.vue'
 import { calendarLinks } from '@/lib/calendar'
 
 const props = defineProps<{ icsUrl: string; name: string }>()
@@ -21,10 +22,10 @@ async function copyLink() {
 }
 
 const options = [
-  { label: 'Apple', href: links.apple },
-  { label: 'Google', href: links.google },
-  { label: 'Outlook', href: links.outlook },
-]
+  { app: 'apple', label: 'Apple', href: links.apple },
+  { app: 'google', label: 'Google', href: links.google },
+  { app: 'outlook', label: 'Outlook', href: links.outlook },
+] as const
 </script>
 
 <template>
@@ -44,8 +45,9 @@ const options = [
           :href="opt.href"
           target="_blank"
           rel="noopener"
-          class="h-12 flex-1 bg-jazz-sky text-base font-semibold text-jazz-black hover:bg-jazz-sky/85"
+          class="h-12 flex-1 gap-1.5 bg-jazz-sky text-base font-semibold text-jazz-black hover:bg-jazz-sky/85"
         >
+          <CalendarAppIcon :app="opt.app" class="size-4" />
           {{ opt.label }}
         </Button>
       </div>

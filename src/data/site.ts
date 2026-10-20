@@ -76,6 +76,13 @@ export const site = {
     icsUrl: 'https://calendar.google.com/calendar/ical/9e33970c003f71266fd9b363e559bd9b8863be5f5a52aa12f1b2cbb1a157d2fd%40group.calendar.google.com/public/basic.ics',
   },
 
+  // Descriptions shown under each Upcoming event, matched by title.
+  eventTypes: {
+    Clinic: '1 of 2 optional events focused on basketball drills and technique',
+    Practice: '1 of 4 events focused on preparing for success in games',
+    Game: '1 of 6 events where the boys can compete and have fun',
+  } as Record<string, string>,
+
   // This week's events. Order doesn't matter; they're sorted by date/time.
   upcoming: [
     { title: 'Clinic', date: '2026-10-24', time: '10:00 AM' },
