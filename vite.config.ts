@@ -14,6 +14,14 @@ export default defineConfig({
     tailwindcss(),
     vueDevTools(),
   ],
+  build: {
+    rolldownOptions: {
+      input: {
+        main: fileURLToPath(new URL('./index.html', import.meta.url)),
+        handout: fileURLToPath(new URL('./handout.html', import.meta.url)),
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

@@ -18,7 +18,8 @@ import {
   TableProperties,
   Ticket,
   UtensilsCrossed,
-  ClipboardList
+  ClipboardList,
+  GraduationCap,
 } from 'lucide-vue-next'
 
 export interface LinkItem {
@@ -61,9 +62,23 @@ export interface InfoItem {
   body: string[]
 }
 
+export interface HomeworkVideo {
+  url: string // any YouTube link (watch, youtu.be, or shorts); '' shows "coming soon"
+  caption?: string
+}
+
+export interface Homework {
+  principle: string // e.g. 'Rebounding'
+  why?: string // one line on why this principle matters
+  completeBy?: string // printed on the handout: "Complete by <this>"
+  drill: HomeworkVideo
+  watchAPro: HomeworkVideo
+}
+
 export const site = {
   title: '3rd Grade Boys Basketball',
   subtitle: '2026-27 · Kaysville, UT',
+  url: 'https://adambushman.github.io/boys-basketball-linktree/',
 
   coach: {
     name: 'Adam Bushman',
@@ -88,6 +103,21 @@ export const site = {
     { title: 'Clinic', date: '2026-10-24', time: '10:00 AM' },
     { title: 'Practice', date: '2026-10-28', time: '5:30 PM' },
   ] as ScheduleItem[],
+
+  // This week's at-home focus. Set to null to hide the section.
+  homework: {
+    principle: 'Rebounding',
+    why: 'Every rebound is a stop on defense or an extra chance to score.',
+    completeBy: 'Game 1, Nov 7th',
+    drill: {
+      url: 'https://www.youtube.com/watch?v=gQNmBiAvJHI',
+      caption: 'Practice good rebounding technique at home'
+    },
+    watchAPro: {
+      url: 'https://www.youtube.com/watch?v=YR3VwPdXUyk',
+      caption: 'See how a pro gets position and grabs a rebound'
+    },
+  } as Homework | null,
 
   planFor: [
     {
@@ -116,6 +146,7 @@ export const site = {
     { title: 'QuickScores', description: 'Application', url: 'https://www.quickscores.com/Orgs/ResultsDisplay.php?OrgDir=kaysvillerec&LeagueID=1753079&TeamID=15396270', icon: TableProperties },
     { title: '"I CAN MAKE THE DIFFERENCE" Award', description: 'Sportsmanship Initiative', url: 'https://www.kaysville.gov/825/Kaysville-Sportsmanship-Zone', icon: Handshake },
     { title: '#EatLikeAChampion', description: 'Healthy Snacks Initiative', url: 'https://ut-kaysville.civicplus.com/1044/Eat-Like-a-Champion', icon: Apple },
+    { title: 'Homework Handout', description: 'Printable · 8 per page', url: 'handout.html', icon: GraduationCap },
     // { title: 'Practice Schedule', description: 'PDF', url: 'files/practice-schedule.pdf', icon: FileText },
   ] as LinkItem[],
 

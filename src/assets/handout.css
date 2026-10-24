@@ -1,0 +1,20 @@
+@import './main.css';
+
+/* Printable sheet: white paper, black ink, brand colors as accents */
+@page {
+  size: letter;
+  margin: 0.25in;
+}
+
+body {
+  background: rgb(229 229 229);
+  color: var(--jazz-black);
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+@media print {
+  body {
+    background: white;
+  }
+}

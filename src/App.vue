@@ -2,11 +2,20 @@
 import CalendarCard from '@/components/CalendarCard.vue'
 import CoachCard from '@/components/CoachCard.vue'
 import EventCard from '@/components/EventCard.vue'
+import HomeworkCard from '@/components/HomeworkCard.vue'
 import InfoCard from '@/components/InfoCard.vue'
 import LinkButton from '@/components/LinkButton.vue'
 import SectionHeading from '@/components/SectionHeading.vue'
 import UpcomingList from '@/components/UpcomingList.vue'
 import { site } from '@/data/site'
+import { onMounted } from 'vue'
+
+// The page renders client-side, so the browser's own jump to #homework etc.
+// happens before the section exists. Redo it once mounted.
+onMounted(() => {
+  const id = decodeURIComponent(location.hash.slice(1))
+  if (id) requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView())
+})
 </script>
 
 <template>
@@ -54,6 +63,11 @@ import { site } from '@/data/site'
         <section>
           <SectionHeading title="Upcoming" />
           <UpcomingList :items="site.upcoming" />
+        </section>
+
+        <section v-if="site.homework" id="homework" class="scroll-mt-6">
+          <SectionHeading title="Homework" />
+          <HomeworkCard :homework="site.homework" />
         </section>
 
         <section v-if="site.planFor.length">
