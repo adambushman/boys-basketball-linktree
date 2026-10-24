@@ -11,10 +11,23 @@ import { site } from '@/data/site'
 import { onMounted } from 'vue'
 
 // The page renders client-side, so the browser's own jump to #homework etc.
-// happens before the section exists. Redo it once mounted.
+// happens before the section exists, and web fonts loading afterward shift it.
+// Jump once mounted, re-jump when fonts/page finish loading, then turn on
+// smooth scrolling for in-page links.
 onMounted(() => {
+  const html = document.documentElement
+  const enableSmooth = () => html.classList.add('scroll-smooth')
   const id = decodeURIComponent(location.hash.slice(1))
-  if (id) requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView())
+  const el = id ? document.getElementById(id) : null
+  if (!el) return enableSmooth()
+
+  const jump = () => el.scrollIntoView({ behavior: 'instant' })
+  jump()
+  const loaded = document.readyState === 'complete' ? Promise.resolve() : new Promise((r) => addEventListener('load', r, { once: true }))
+  Promise.all([document.fonts.ready, loaded]).then(() => {
+    jump()
+    enableSmooth()
+  })
 })
 </script>
 
