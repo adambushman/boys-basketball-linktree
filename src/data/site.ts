@@ -100,8 +100,9 @@ export const site = {
 
   // This week's events. Order doesn't matter; they're sorted by date/time.
   upcoming: [
-    { title: 'Clinic', date: '2026-10-24', time: '10:00 AM' },
-    { title: 'Practice', date: '2026-10-28', time: '5:30 PM' },
+    { title: 'Clinic', date: '2026-10-31', time: '10:00 AM' },
+    { title: 'Practice', date: '2026-11-04', time: '5:30 PM' },
+    { title: 'Game', date: '2026-11-07', time: '9:15 AM' },
   ] as ScheduleItem[],
 
   // This week's at-home focus. Set to null to hide the section.
